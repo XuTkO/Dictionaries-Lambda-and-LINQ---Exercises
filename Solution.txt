@@ -6,19 +6,28 @@ public class Phonebook {
     public static void main (String[] args ) {
         Scanner scanner = new Scanner(System.in);
         String[] input = scanner.nextLine().split(" ");
-        TreeMap<String,String> map = new TreeMap<>();
+        LinkedHashMap<String,String> map = new LinkedHashMap<>();
 
         while (!input[0].equals("END")){
             if(input[0].equals("A")){
                 map.put(input[1],input[2]);
+            } else if (input[0].equals("S")){
+                if(map.containsKey(input[1])) {
+                    System.out.println(input[1] + " -> " + map.get(input[1]));
+                } else {
+                    System.out.printf("Contact %s does not exist.%n",input[1]);
+                }
+            } else if (input[0].equals("ListAll")){
+                Map<String,String> sortedMap = new TreeMap<>(map);
+                for (String result:sortedMap.keySet()
+                        ) {System.out.println(result + " -> " + map.get(result));
+                }
+
             }
             input = scanner.nextLine().split(" ");
         }
 
-        for (String result:map.keySet()
-             ) {System.out.println(result + " -> " + map.get(result));
 
-        }
 
     }
 }
