@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class OddOccurrences {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        LinkedHashMap<String,String> map = new LinkedHashMap<>();
+
+        String input = scanner.nextLine();
+        if(input.equals("stop")){
+            return;
+        }
+        String value = scanner.nextLine();
+
+        String endOfEmail = "";
+
+
+
+        while (!input.equals("stop")) {
+            endOfEmail=value;
+            if(endOfEmail.endsWith("us")){
+                input = scanner.nextLine();
+                continue;
+            } else {
+                map.put((input),value);
+            }
+            input = scanner.nextLine();
+            if(input.equals("stop")){
+                break;
+            }
+            value = scanner.nextLine();
+        }
+
+
+
+        for (String text:map.keySet()
+                ) {
+            System.out.println(text + " -> " + map.get(text));
+        }
+    }
+}
